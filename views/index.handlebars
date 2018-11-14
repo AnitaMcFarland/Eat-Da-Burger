@@ -89,4 +89,17 @@
             window.location.reload();
         });
     })
+     $(".create").on("click", function(e){
+        e.preventDefault();
+        console.log(this.id);
+        $.ajax({
+            method: "POST",
+            url: "/burger/update/" + this.id,
+            data: {
+                create: true
+            }
+        }).then(function(res){
+            window.location.reload();
+        });
+    })
 </script>
