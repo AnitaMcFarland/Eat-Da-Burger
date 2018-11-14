@@ -1,6 +1,6 @@
 body{
-  background: url("../img/restaurant1.jpeg"); 
-  background-color: gold;
+  background: url("../img/restaurant4.jpg"); 
+  background-color: aquamarine; 
   width: 99%;
   height: 900px;
 }
@@ -22,7 +22,7 @@ img {
 .create-update-form {
   padding: 5px;
   margin: 5px;
-  background: aqua;
+  background: rgb(0, 123, 255, 0.5);
 }
 
 .form-group {
@@ -91,7 +91,7 @@ img {
 h1 {
   color: blue;
   }body{
-	background: url("../img/restaurant1.jpeg"); 
+  background: url("../img/restaurant4.jpg");  
   width: 99%;
   height: 900px;
 }
@@ -113,7 +113,7 @@ img {
 .create-update-form {
   padding: 5px;
   margin: 5px;
-  background: aqua;
+  background: rgb(0, 123, 255, 0.5);
 }
 
 .form-group {

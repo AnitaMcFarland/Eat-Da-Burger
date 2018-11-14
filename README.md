@@ -4,7 +4,7 @@ This is an activity to add burgers and devour burgers when clicking on buttons. 
 
 **Files needed:**
 Eat-Da-Burger
->-.gitignore  
+
 >-app  
 >-data  
 >-burger.js  

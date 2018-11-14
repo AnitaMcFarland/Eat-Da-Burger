@@ -10,11 +10,11 @@ var burger = {
     orm.create("eat-da-burger",[
       "burger_name", "devoured"], [vals, false], cb);
   },
-  update: function(id, cb) {
+  update: function(devoured, id, cb) {
     var condition= "id=" +id;
-    orm.update("eat-da-burger", {
-      devoured: true
-    },condition, cb);
+    orm.update("burgers", {
+      devoured: devoured
+    }, condition, cb);
   }
 };
 

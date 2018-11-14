@@ -15,7 +15,7 @@ router.get("/", function(req, res) {
   });
 });
 
-router.post("/", function(req, res) {
+router.post("/burger/create", function(req, res) {
   burger.create([
     "burger_name", "devoured"
   ], [
@@ -25,19 +25,14 @@ router.post("/", function(req, res) {
   });
 });
 
-router.put("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
+router.put("/burger/update/:id", function(req, res) {
 
-  console.log("condition", condition);
-
-  burger.update({
-    devoured: req.body.devoured
-  }, condition, function() {
-    res.redirect("/");
+  burger.update(req.body.devoured, req.params.id, function() {
+    res.status(200).end();
   });
 });
 
-router.delete("/:id", function(req, res) {
+router.delete("/burger/delete/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
   burger.delete(condition, function() {
