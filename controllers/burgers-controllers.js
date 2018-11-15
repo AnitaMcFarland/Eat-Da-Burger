@@ -16,12 +16,8 @@ router.get("/", function(req, res) {
 });
 
 router.post("/burger/create", function(req, res) {
-  burger.create([
-    "burger_name", "devoured"
-  ], [
-    req.body.burger_name, req.body.devoured
-  ], function() {
-    res.redirect("/");
+  burger.create(req.body.burgers, function() {
+    res.status(200).end();
   });
 });
 
@@ -38,6 +34,21 @@ router.delete("/burger/delete/:id", function(req, res) {
   burger.delete(condition, function() {
     res.redirect("/");
   });
+
+// router.post("/burger/create", function(req, res) {
+//     console.log(req.body.burger_name)
+//     burger.create(req.body.burger_name, function(result){
+        
+//         // res.redirect("/");
+//         console.log(result)
+//     });
+// });
+
+router.put("/burger/update/:id", function(req, res) {
+
+    burger.update(req.body.create, req.params.id, function() {
+      res.status(200).end();})
+    }); 
 });
 
 // Export routes for server.js to use.

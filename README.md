@@ -30,7 +30,7 @@ Eat-Da-Burger
 
 **Example:
 
-![App screenshot]![index.handlebars](public/assets/img/screenview.png)
+![App screenshot]![index.handlebars](public/assets/img/screenshot.png)
 
 **Technologies used:**
 >apis  
@@ -43,20 +43,8 @@ Eat-Da-Burger
 >bootstrap
 
 **How did it run?**
-***Home :***  
-(The home interface works well.) All buttons connect and send user to the survey.
-![home.html screenshot]![Home HTML](app/data/images/home.html.png)
-
-***Survey HTML:***  
-(The survey interface works well.) All buttons connect and submit results from the survey.
-![survey.html screenshot]![Survey HTML](app/data/images/survey.html.png)
-
-***Submitting:***  
-(The submit button works well.) The submit button enters user information and sends user a message showing submission of the survey.
-![submitting screenshot]![Submitting](app/data/images/submitting.png)
-
-***Best Match:***  
-(The Best match link works well.) Users are connected to another user based on scores. The user is then  sent a picture with the name of their match.
-![Best Match screenshot]![Best Match](app/data/images/best-match.png)
+(The app interface works well.) All buttons connect and allow the user to devour burgers and to add a new burger.
+![submitorder]![Submit Order](public/assets/img/submitorder.png)
+Eat-Da-Burger is a fun app to devour and submit a burger order.
 
 Anita McFarland

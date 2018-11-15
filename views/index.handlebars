@@ -1,105 +1,137 @@
 <div class="container bg">
-	
-	<div class="row">
-	    <div class="center col-sm-12">
-			<img src="/assets/img/burger.jpeg" alt="Eat-Da-Burger">
-	        <h1>Eat-Da-Burger</h1>
-	        <p></p>
-	    </div>
-  	</div>
-	<!-- end .row -->
 
-	<div class="row">
-	    <div class="col-sm-6">
+    <div class="row">
+        <div class="center col-sm-12">
+            <h1>Eat-Da-Burger</h1>
+            <img src="/assets/img/burger.jpeg" alt="Eat-Da-Burger">
 
-			<br>
-			<h2>Burgers Available To Eat!</h2>
+            <p></p>
+        </div>
+    </div>
+    <!-- end .row -->
 
-			<ul>
-			  {{#each burgers}}
-			    {{#unless this.devoured}}
-			      <li>
-			      	{{this.id}}
-			        {{this.burger_name}}
+    <div class="row">
+        <div class="col-sm-6">
 
-			        <form>
-			          <input type="hidden" name="devoured" value="true">
-			          <button id="{{id}}" class="btn-primary devour" type="submit">Devour It!</button>
-			        </form>
+            <br>
+            <h2>Burgers Available To Eat!</h2>
 
-			      </li>
-			    {{/unless}}
-			  {{/each}}
-			</ul>
+            <ul>
+                {{#each burgers}}
+                {{#unless this.devoured}}
+                <li>
+                    {{this.id}}
+                    {{this.burger_name}}
 
-	    </div>
+                    <form>
+                        <input type="hidden" name="devoured" value="true">
+                        <button id="{{id}}" class="btn-primary devour" type="submit">Devour It!</button>
+                    </form>
 
-	    <div class="col-sm-6">
+                </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
 
-			<h2>Burgers That Have Been Eaten!</h2>
-			
-			  {{#each burgers}}
-			    {{#if this.devoured}}
-			      <li>
-			      	{{this.id}}
-			        {{this.burger_name}}
+        </div>
 
-			      </li>
-			    {{/if}}
-			  {{/each}}
-			
-	    </div>
+        <div class="col-sm-6">
+            <br>
+            <h2>Burgers That Have Been Eaten!</h2>
 
-  	</div>
-	
+            {{#each burgers}}
+            {{#if this.devoured}}
+            <li>
+                {{this.id}}
+                {{this.burger_name}}
 
-	<div class="row">
-	    <div class="center col-sm-12">
+            </li>
+            {{/if}}
+            {{/each}}
 
-			<h2>Add A Burger!</h2>
+        </div>
 
-			<form class="create-update-form" action="/burger/create" method="POST">
+    </div>
 
-			  <div class="form-group">
-			    <p>Enter a burger you want to order and click the Submit Order button.</p>
-			    <input type="text" id="ca" name="burger_name">
-			  </div>
-			  
-			  <button class="btn-primary" type="submit">Submit Order</button>
-			</form>
 
-	    </div>
-	
-  	</div>
-	<!-- end .row -->
+    <div class="row">
+        <div class="center col-sm-12">
 
-</div>
+            <h2>Add A Burger!</h2>
+            <div id="createburger" class="button-size">
+                <p>Enter a burger you want to order and click the Submit Order button.</p>
 
-<script>
-    $(".devour").on("click", function(e){
-        e.preventDefault();
-        console.log(this.id);
-        $.ajax({
-            method: "PUT",
-            url: "/burger/update/" + this.id,
-            data: {
-                devoured: true
-            }
-        }).then(function(res){
-            window.location.reload();
-        });
-    })
-     $(".create").on("click", function(e){
-        e.preventDefault();
-        console.log(this.id);
-        $.ajax({
-            method: "POST",
-            url: "/burger/update/" + this.id,
-            data: {
-                create: true
-            }
-        }).then(function(res){
-            window.location.reload();
-        });
-    })
-</script>
+                <form class="create-update-form">
+                    <input type="text" id="ca" name="burger_name">
+                    <button class="btn-primary create" type="submit">Submit Order</button>
+                </form>
+            </div>
+
+
+        </div>
+
+        <script>
+            $(".devour").on("click", function (e) {
+                e.preventDefault();
+                console.log(this.id);
+                $.ajax({
+                    method: "PUT",
+                    url: "/burger/update/" + this.id,
+                    data: {
+                        devoured: true
+                    }
+                }).then(function (res) {
+                    window.location.reload();
+                });
+            });
+
+
+
+            $(".update").on("submit", function (event) {
+                // Make sure to preventDefault on a submit event.
+                event.preventDefault();
+
+                // Get the ID by finding an element with a "name" attribute equal to the string "id"
+
+                var updatedBurger = {
+                    burgers: $(".update [burger_name]").val().trim()
+                };
+
+                // Send the PUT request.
+                $.ajax("/burgers/" + id, {
+                    type: "PUT",
+                    data: newBurgers,
+                }).then(
+                    function () {
+                        console.log("updated id ", id);
+                        // Reload the page to get the updated list
+                        location.reload();
+                    })
+            });
+
+            $(".create").on("click", function (event) {
+
+                // Make sure to preventDefault on a submit event.
+                event.preventDefault();
+
+                // [name=burger] will find an element with a "name" attribute equal to the string "burger
+                var newBurger = {
+                    burgers: $("#ca").val().trim()
+                };
+                console.log(newBurger);
+                // Send the POST request.
+                $.ajax("/burger/create", {
+                    method: "POST",
+                    data: newBurger,
+                }).then(
+                    function () {
+                        console.log("added new burger");
+                        // Reload the page to get the updated list
+                        location.reload();
+                    }
+                );
+            });
+
+
+
+        </script>

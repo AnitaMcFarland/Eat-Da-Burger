@@ -27,7 +27,7 @@ function objToSql(ob) {
         value = "'" + value + "'";
       }
       // e.g. {name: 'Chicken Burger'} => ["name='Chicken Burger'"]
-      // e.g. {sleepy: true} => ["sleepy=true"]
+      
       arr.push(key + "=" + value);
     }
   }
@@ -49,6 +49,7 @@ var orm = {
   },
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
+    
 
     queryString += " (";
     queryString += cols.toString();
@@ -59,11 +60,11 @@ var orm = {
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    const query = connection.query(queryString, vals, function(err, result) {
       if (err) {
         throw err;
       }
-
+      console.log("TESTING:", query.sql);
       cb(result);
     });
   },
